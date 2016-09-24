@@ -9,6 +9,6 @@
 
 	function homeController($scope,$state){
             
-      }
+    }
 
 })();

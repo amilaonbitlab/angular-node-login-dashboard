@@ -10,12 +10,7 @@
 	function loginController($scope,$rootScope,$state,userService,toastr){
             
             // config 
-            // dummy data for testing
-            $scope.data = {
-                email : 'abc@gmail.com',
-                password : '123'
-            }
-            // $scope.data = {email : '',password : ''};
+            $scope.data = {email : '',password : ''};
 
             // login function 
             $scope.login = function(data){ 
@@ -32,7 +27,7 @@
                   // Login Success 
                   if(data.message == 'success'){                        
                         toastr.success('Login Success', 'Success');
-                        $state.go('dashboard');
+                        $state.go('dashboard.view');
                   }
 
                   // Login Faild 

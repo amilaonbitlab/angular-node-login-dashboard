@@ -27,9 +27,25 @@
     })
     // Dashboard State 
     .state('dashboard', {
-        url: '/dashboard',
+        abstract: true,
         templateUrl: 'views/dashboard.html',
         controller: 'dashboardController'    
+    })
+    .state('dashboard.view', {
+        url: '/dashboard',
+        templateUrl: 'views/dashboard-view.html'    
+    })
+    .state('dashboard.calendar', {
+        url: '/calendar',
+        templateUrl: 'views/calendar.html'        
+    })
+    .state('dashboard.forms', {
+        url: '/forms',
+        templateUrl: 'views/forms.html'        
+    })
+    .state('dashboard.tables', {
+        url: '/tables',
+        templateUrl: 'views/tables.html'        
     });
 
   // Other wise set state 

@@ -10,13 +10,7 @@
 	function signupController($scope,$rootScope,$state,userService,toastr){
             
             // config 
-            // dummy data for testing
-            $scope.data = {
-                email : 'abc@gmail.com',
-                password : '123',
-                confPassword : ''
-            }
-            //$scope.data = {email : '',password : '',confPassword : ''}
+            $scope.data = {email : '',password : '',confPassword : ''}
 
             // login function 
             $scope.signup = function(data){    

@@ -12,11 +12,11 @@
         // call get dashboard data API  
         dashboardService.getDashboardData().success(function(data){            
 
-         console.log(data);
+            console.log(data);
 
         }).error(function(err){
 
-         console.log(err);
+            console.log(err);
 
         })
             
