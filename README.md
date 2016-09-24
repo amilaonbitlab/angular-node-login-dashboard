@@ -1,7 +1,7 @@
 # angular-node-login-dashboard
 
 SetUp Project
-===================================================================
+==================================================================
 (1)	clone the repository
 
 		git clone git@github.com:amilaonbitlab/angular-node-login-dashboard.git
