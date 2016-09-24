@@ -12,7 +12,7 @@ SetUp Project
 
 (3)	set up frontend 
 
-		Go to Fronend Dir 
+		Go to frontend Dir 
 
         > npm install
         > bower install
@@ -25,7 +25,7 @@ SetUp Project
 
 (4) set up backend 
 
-		Go to Fronend Dir 
+		Go to backend Dir 
 
         > npm install        
 
