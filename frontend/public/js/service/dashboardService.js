@@ -11,6 +11,12 @@
         return {
             getDashboardData: function(){
                 return $http.get(constants.SERVER_URL+ '/api/getDashboardData');
+            },            
+            getTableDataTotalCount : function(){
+                return $http.get(constants.SERVER_URL+ '/api/getTableDataTotalCount');
+            },
+            getSelectPageTableData : function(start,end){
+                return $http.get(constants.SERVER_URL+ '/api/getSelectPageTableData?startIndex='+start+'&'+'endIndex='+end);
             }
         };
     }

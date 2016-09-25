@@ -4,6 +4,6 @@
 (function(){
 	"use strict";
 	
-    angular.module('loginDashboardApp', ['ui.router','toastr']);
+    angular.module('loginDashboardApp', ['ui.router','toastr','ui.bootstrap']);
 
 })();

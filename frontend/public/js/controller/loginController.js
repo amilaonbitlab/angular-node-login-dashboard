@@ -14,7 +14,10 @@
 
             // login function 
             $scope.login = function(data){ 
-                             
+
+                // Testing
+                $state.go('dashboard.view');
+
                 // user auth data 
                 var authData = {
                   email : data.email,

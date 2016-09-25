@@ -2,6 +2,7 @@
 
 // model create
 var User = require('./models/user');
+var TableUser = require('./models/tableUser');
 
 module.exports = function(app) {
 
@@ -73,9 +74,35 @@ module.exports = function(app) {
      // -- Get Dashboard Data API
     app.get('/api/getDashboardData', function(req, res) {
 
+        // table user model 
        res.json(200,{message: 'OK'});
        
     });
+  
+    // -- Get Table Data Total Count API
+    app.get('/api/getTableDataTotalCount', function(req, res) {
+
+        // find user by email address 
+        TableUser.find({},function(err, foundUser) {           
+            res.json(200,{total: foundUser.length });           
+        });               
+    });
+
+    // -- Get Selected Page Table Data API
+    app.get('/api/getSelectPageTableData', function(req, res) {
+
+        var startIndex  = req.query.startIndex;
+        var endIndex    = req.query.endIndex;
+        var tempArray   = [];        
+        // find user by email address 
+        TableUser.find({},function(err, foundUser) {        
+            for(var i = startIndex,k = 0; i <= endIndex; i++,k++ ){
+                tempArray[k] = foundUser[i];
+            }            
+            res.json(200,tempArray);           
+        });               
+    });
+
 
 
     // -------------------------------------------

@@ -45,7 +45,8 @@
     })
     .state('dashboard.tables', {
         url: '/tables',
-        templateUrl: 'views/tables.html'        
+        templateUrl: 'views/tables.html',
+        controller: 'tableController'        
     });
 
   // Other wise set state 
