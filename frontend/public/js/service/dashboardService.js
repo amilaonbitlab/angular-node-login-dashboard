@@ -10,7 +10,7 @@
     function dashboardService($http,constants) {
         return {
             getDashboardData: function(){
-                return $http.get(constants.SERVER_URL+ '/api/getDashboardData');
+                return $http.get(constants.SERVER_URL+ '/auth/api/getDashboardData');
             },            
             getTableDataTotalCount : function(){
                 return $http.get(constants.SERVER_URL+ '/auth/api/getTableDataTotalCount');

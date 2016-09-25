@@ -8,7 +8,6 @@ var methodOverride = require('method-override');
 var mongoose 	     = require('mongoose');
 var jwt            = require('jsonwebtoken'); 
 
-
 // configuration ===========================================
     
 // config files
@@ -102,7 +101,7 @@ console.log('Angular Node Login Dashboard Backend Port : ' + port);
 exports = module.exports = app;  
 
 // Start DB update 
-
+// ------------------------------------------------------------------------------------------------
 // grab the User model we just created
 var User = require('./app/models/user');
 
@@ -115,7 +114,7 @@ userOne.password =  '123';
 
 userOne.save();
 
-
+// ------------------------------------------------------------------------------------------------
 // table user model 
 var TableUser = require('./app/models/tableUser');
 
@@ -181,3 +180,57 @@ for(var i = 0; i < dummyTableData.length; i++){
 	TableUserTemp.save();
 
 }
+
+// ------------------------------------------------------------------------------------------------
+
+// graph model 
+var Graph = require('./app/models/graph');
+
+// When restart sever remove all graph Collection
+Graph.find({}).remove().exec();
+
+var oneGraph = new Graph();
+oneGraph.seris = 'Series A';
+oneGraph.dataArray =  [65, 59, 80, 81, 56, 55, 40];
+oneGraph.save();
+
+var twoGraph = new Graph();
+twoGraph.seris = 'Series B';
+twoGraph.dataArray =  [28, 48, 40, 19, 86, 27, 90];
+twoGraph.save();
+
+// Every 2 second update grap data 
+var count = 0;
+
+setInterval(function() {
+  
+Graph.find({}).remove().exec();
+
+var oneGraph = new Graph();
+oneGraph.seris = 'Series A';
+var twoGraph = new Graph();
+twoGraph.seris = 'Series B';
+
+if(count%3 == 0){
+  oneGraph.dataArray =  [45, 88, 80, 92, 77, 66, 12];
+  twoGraph.dataArray =  [28, 48, 40, 19, 86, 27, 90];
+}
+
+if(count%3 == 1){
+  oneGraph.dataArray =  [28, 48, 40, 19, 86, 27, 90];
+  twoGraph.dataArray =  [45, 88, 80, 92, 77, 66, 12];
+}
+
+if(count%3 == 2){
+  oneGraph.dataArray =  [28, 48, 45, 25, 86, 30, 90];
+  twoGraph.dataArray =  [45, 88, 80, 88, 77, 55, 12];
+}
+
+oneGraph.save();
+twoGraph.save();
+
+count = count + 1;
+
+}, 2000);
+
+// ------------------------------------------------------------------------------------------------

@@ -1,13 +1,13 @@
 /**
- * home Controller js 
+ * dashboard Controller js 
  */
 (function() {
 	'use strict';
 	angular.module('loginDashboardApp')
 
-	.controller('dashboardController', ['$scope','$state','dashboardService','toastr','$cookies',dashboardController]);
+	.controller('dashboardController', ['$scope','$state','toastr','$cookies',dashboardController]);
 
-	function dashboardController($scope,$state,dashboardService,toastr,$cookies){
+	function dashboardController($scope,$state,toastr,$cookies){
 
 
         var token = $cookies.get('AUTH-TOKEN');
@@ -22,17 +22,6 @@
             $cookies.remove('AUTH-TOKEN');
             $state.go("app.login");
         }
-
-        // call get dashboard data API  
-        dashboardService.getDashboardData().success(function(data){            
-
-            console.log(data);
-
-        }).error(function(err){
-
-            console.log(err);
-
-        })
             
       }
 

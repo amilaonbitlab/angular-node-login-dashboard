@@ -1,5 +1,5 @@
 /**
- * login Controller js 
+ * table Controller js 
  */
 (function() {
 	'use strict';

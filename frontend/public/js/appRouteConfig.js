@@ -33,7 +33,8 @@
     })
     .state('dashboard.view', {
         url: '/dashboard',
-        templateUrl: 'views/dashboard-view.html'    
+        templateUrl: 'views/dashboard-view.html',
+        controller: 'graphController'    
     })
     .state('dashboard.calendar', {
         url: '/calendar',

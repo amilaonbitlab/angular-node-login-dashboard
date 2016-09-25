@@ -1,5 +1,5 @@
 /**
- * login Controller js 
+ * sign up  Controller js 
  */
 (function() {
 	'use strict';

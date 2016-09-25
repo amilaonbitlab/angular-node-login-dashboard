@@ -3,9 +3,9 @@
 // model create
 var User = require('./models/user');
 var TableUser = require('./models/tableUser');
+var Graph = require('./models/graph');
 
 var Secret  = require('../config/secret');
-
 var jwt     = require('jsonwebtoken');
 
 module.exports = function(app) {
@@ -80,19 +80,19 @@ module.exports = function(app) {
     // -------- Start Dashboard API  -------------
     // -------------------------------------------    
      // -- Get Dashboard Data API
-    app.get('/api/getDashboardData', function(req, res) {
+    app.get('/auth/api/getDashboardData', function(req, res) {
 
-        // table user model 
-       res.json(200,{message: 'OK'});
+        // find graph collection 
+        Graph.find({},function(err, foundGraph) {                
+            res.json(200,foundGraph);           
+        });    
        
     });
   
     // -- Get Table Data Total Count API
     app.get('/auth/api/getTableDataTotalCount', function(req, res) {
 
-        var token  = req.headers; 
-
-        // find user by email address 
+        // find table user  
         TableUser.find({},function(err, foundUser) {                
             res.json(200,{total: foundUser.length });           
         });               
@@ -104,7 +104,7 @@ module.exports = function(app) {
         var startIndex  = req.query.startIndex;
         var endIndex    = req.query.endIndex;
         var tempArray   = [];        
-        // find user by email address 
+        // find table user 
         TableUser.find({},function(err, foundUser) {        
             for(var i = startIndex,k = 0; i <= endIndex; i++,k++ ){
                 tempArray[k] = foundUser[i];
