@@ -58,4 +58,10 @@
   
 })
 
+.run(function run( $http, $cookies ){
+  
+  $http.defaults.headers.common["x-access-token"] = $cookies.get('AUTH-TOKEN');
+
+})
+
 })();

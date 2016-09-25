@@ -5,18 +5,15 @@
 	'use strict';
 	angular.module('loginDashboardApp')
 
-	.controller('loginController', ['$scope','$rootScope','$state','userService','toastr',loginController]);
+	.controller('loginController', ['$scope','$rootScope','$state','userService','toastr','$cookies',loginController]);
 
-	function loginController($scope,$rootScope,$state,userService,toastr){
+	function loginController($scope,$rootScope,$state,userService,toastr,$cookies){
             
             // config 
-            $scope.data = {email : '',password : ''};
+            $scope.data = {email : '',password : ''};            
 
             // login function 
             $scope.login = function(data){ 
-
-                // Testing
-                $state.go('dashboard.view');
 
                 // user auth data 
                 var authData = {
@@ -25,11 +22,14 @@
                 }  
                 
                 // call auth create check user API  
-                userService.authUser(authData).success(function(data){            
+                userService.authUser(authData).success(function(data){       
+                  
+                  var CTOKEN = $cookies.get('AUTH-TOKEN');                  
 
                   // Login Success 
                   if(data.message == 'success'){                        
                         toastr.success('Login Success', 'Success');
+                        $cookies.put('AUTH-TOKEN',data.token);
                         $state.go('dashboard.view');
                   }
 

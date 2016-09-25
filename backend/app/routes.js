@@ -4,6 +4,10 @@
 var User = require('./models/user');
 var TableUser = require('./models/tableUser');
 
+var Secret  = require('../config/secret');
+
+var jwt     = require('jsonwebtoken');
+
 module.exports = function(app) {
 
     // -------------------------------------------
@@ -57,7 +61,11 @@ module.exports = function(app) {
             if(foundUser.length == 1){
                 // check password
                 if(foundUser[0].password == password){
-                    res.json(200,{message: 'success'});
+
+                    // if user is found and password is right
+                    // create a token
+                    var token = jwt.sign(foundUser[0], Secret.secret);            
+                    res.json(200,{message: 'success',token :  token });
                 }else{
                     res.json(200,{message: 'faild'});
                 }    
@@ -80,16 +88,18 @@ module.exports = function(app) {
     });
   
     // -- Get Table Data Total Count API
-    app.get('/api/getTableDataTotalCount', function(req, res) {
+    app.get('/auth/api/getTableDataTotalCount', function(req, res) {
+
+        var token  = req.headers; 
 
         // find user by email address 
-        TableUser.find({},function(err, foundUser) {           
+        TableUser.find({},function(err, foundUser) {                
             res.json(200,{total: foundUser.length });           
         });               
     });
 
     // -- Get Selected Page Table Data API
-    app.get('/api/getSelectPageTableData', function(req, res) {
+    app.get('/auth/api/getSelectPageTableData', function(req, res) {
 
         var startIndex  = req.query.startIndex;
         var endIndex    = req.query.endIndex;
